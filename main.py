@@ -1,14 +1,3 @@
-def fizz_buzz(n,x,y):
-    if n % x == 0 and n % y == 0:
-        a ="FizzBuzz"
-    elif n % x == 0:
-        a = "Fizz"
-    elif n % y == 0:
-        a = "Buzz"
-    else :
-        a = str (n)
-    return a
-n=int(input ("判定する整数nは？"))
-x=int(input ("判定する整数xは？"))
-y=int(input ("判定する整数yは？"))
-print (fizz_buzz(n,x,y))
+zisyo = {apple:ringo,appo:uncho}
+a = input("英単語を入力してください: ")
+print(english_words[str(a)])
