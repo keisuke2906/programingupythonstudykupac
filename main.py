@@ -1,11 +1,14 @@
-def fizz_buzz(n):
-    if n % 15 == 0:
+def fizz_buzz(n,x,y):
+    if n % x*y == 0:
         a ="FizzBuzz"
-    elif n % 3 == 0:
+    elif n % x == 0:
         a = "Fizz"
-    elif n % 5 == 0:
+    elif n % y == 0:
         a = "Buzz"
     else :
         a = str (n)
     return a
-n=int(input ("判定する整数は？"))
+n=int(input ("判定する整数nは？"))
+x=int(input ("判定する整数xは？"))
+y=int(input ("判定する整数yは？"))
+print (fizz_buzz(n,x,y))
