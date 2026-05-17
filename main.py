@@ -1,5 +1,5 @@
 def fizz_buzz(n,x,y):
-    if n % x*y == 0:
+    if n % x == 0 and n % y == 0:
         a ="FizzBuzz"
     elif n % x == 0:
         a = "Fizz"
