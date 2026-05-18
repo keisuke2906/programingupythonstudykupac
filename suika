@@ -7,9 +7,10 @@ x = 0
 y = 0
 syoki_iti = [int(x), int(y)]
 c = 1
+c = math.sqrt((suika_iti[0] - syoki_iti[0])**2 + (suika_iti[1] - syoki_iti[1])**2)
+print("スイカは", str(c), "マス分遠くにあるね")
 while c != 0:
-    c = math.sqrt((suika_iti[0] - syoki_iti[0])**2 + (suika_iti[1] - syoki_iti[1])**2)
-    print("スイカは", str(c), "マス分遠くにあるんかいな")
+   
     k = input("どっちに進むつもり？上ならw、下ならs、右ならd、左ならaを入力してね")
     if k == "w":
         syoki_iti[1] += 1
@@ -20,12 +21,8 @@ while c != 0:
     elif k == "a":
         syoki_iti[0] -= 1
     c = math.sqrt((suika_iti[0] - syoki_iti[0])**2 + (suika_iti[1] - syoki_iti[1])**2)
-    print("スイカは", str(c), "マス分遠くにあるんかいな")
-    
+    print("スイカは", str(c), "マス分遠くにあるね")
     s = random.randrange(1, 8)
-    if s == 1 or s == 2 or s == 3 or s == 4:
-        print("おい！スイカがひとりでに動いてるぞ！")
-        print("スイカ「ゴロンゴロン」")
     if s == 1:
         suika_iti[0] += 2
     if s == 2:
@@ -34,5 +31,11 @@ while c != 0:
         suika_iti[1] += 2
     if s == 4:
         suika_iti[1] += -2
+    if s == 1 or s == 2 or s == 3 or s == 4:
+        print("！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！おい！スイカがひとりでに動いてるぞ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！")
+        print("スイカ「ゴロンゴロン」")
+        c = math.sqrt((suika_iti[0] - syoki_iti[0])**2 + (suika_iti[1] - syoki_iti[1])**2)
+        print("スイカは", str(c), "マス分遠くにあるね")
+
 print ("スイカをかち割った")
     
