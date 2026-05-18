@@ -1,0 +1,10 @@
+import random
+import math
+a=random.randrange(-100, 100)
+b=random.randrange(-100, 100)
+suika_iti = a, b
+x = 0
+y = 0
+syoki_iti = [int(x), int(y)]
+c = 0
+c = math
