@@ -25,6 +25,7 @@ while c != 0:
     s = random.randrange(1, 8)
     if s == 1 or s == 2 or s == 3 or s == 4:
         print("おい！スイカがひとりでに動いてるぞ！")
+        print("スイカ「ゴロンゴロン」")
     if s == 1:
         suika_iti[0] += 2
     if s == 2:
