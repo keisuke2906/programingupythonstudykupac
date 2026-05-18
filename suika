@@ -1,7 +1,7 @@
 import random
 import math
-a=random.randrange(-100, 100)
-b=random.randrange(-100, 100)
+a=random.randrange(-10, 10)
+b=random.randrange(-10, 10)
 suika_iti = [int(a), int(b)]
 x = 0
 y = 0
