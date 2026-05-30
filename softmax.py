@@ -1,4 +1,4 @@
-def softmax(x):
+def softmax(x):   #指数関数的で人間的な確率のとらえ方
     import numpy as np
     c = np.max(x)
     exp_a = np.exp(x - c)
