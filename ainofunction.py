@@ -12,3 +12,8 @@ def sigmoid(x):
     import numpy as np
     y = 1 / (1 + np.exp(- x))
     return y
+
+def cross_entropy(x , t):
+    import numpy as np
+    y = - np.sum(t * np.log(x + 1e-7)) 
+    return y

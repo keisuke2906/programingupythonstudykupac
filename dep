@@ -1,6 +1,0 @@
-from deeplearnig import x
-import numpy as no
-import matplotlib.pyplot as pypy
-y = no.sin(x)
-pypy.plot(x, y)
-pypy.show()
