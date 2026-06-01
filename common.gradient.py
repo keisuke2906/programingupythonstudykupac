@@ -12,4 +12,9 @@ def koubai (f , x):
         koubai_atai[i] = (fxh1 - fxh2) / 2*h
         x[i] = a
     return koubai_atai
-    
+def mugen_koubai (f , x):
+    import numpy as np
+    for k in range(100):
+        dfx = koubai(f , x)
+        x = x + dfx * 0.01
+    return x
