@@ -59,7 +59,7 @@ for i in range(10):
     a = np.random.randn(1, unnko.input_size)
     t = np.random.randn(1, unnko.input_size)
     unnko.gakusyuu(a, t)
-    print(f"{i+1}回目の学習完了")
+    print("{i+1}回目の学習完了")
 print (unnko.params)
 x = input("suikanoitiha?x")
 y = input("suikanoitiha?y")
