@@ -25,7 +25,7 @@ class omomi_suika:
         a2 = np.dot(z1, w2) + b2
         y = softmax(a2)
 
-        return y
+        return a2
     
     def loss(self, t, a): #t ha kyousidata
         y = self.predict(a)           #名前.loss(x, t)で簡単に誤差
@@ -57,6 +57,7 @@ unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_in
 
 for i in range(10):
     a = np.random.randn(1, unnko.input_size)
+    
     unnko.gakusyuu(a, a)
     print(f"{i+1}回目の学習完了")
 print (unnko.params)
