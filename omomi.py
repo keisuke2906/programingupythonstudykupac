@@ -2,6 +2,7 @@ import sys, os
 sys.path.append(os.pardir)
 import numpy as np
 from ainofunction import softmax, cross_entropy
+from ainogradient import koubai, mugen_koubai
 class omomi:
     def __init__(self):  #これはクラスを指定された時点で発動する
         self.W = np.random.rand(2 ,3)   #こいつがとりあえずの重みとなるのか？
@@ -13,3 +14,5 @@ class omomi:
         z = self.predict(x)           #名前.loss(x, t)で簡単に誤差
         y = softmax(z)
         return cross_entropy(y, t)
+    def f(self,):
+        return mugen_koubai(self.loss)
