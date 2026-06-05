@@ -1,7 +1,7 @@
 import sys, os
 sys.path.append(os.pardir)
 import numpy as np
-from ainofunction import softmax, cross_entropy, sigmoid
+from ainofunction import softmax, cross_entropy, sigmoid, nizyou_heikinn
 from ainogradient import koubai, mugen_koubai, koubai_tazigenn
 class omomi_suika:
     def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01):  #これはクラスを指定された時点で発動する　　これらの因数は一度ですべてのデータを読み込ませ計算する
@@ -30,7 +30,7 @@ class omomi_suika:
     def loss(self, t, a): #t ha kyousidata
         y = self.predict(a)           #名前.loss(x, t)で簡単に誤差
 
-        return cross_entropy(y, t)
+        return nizyou_heikinn(y, t)
     
     
     def numerical_gradient(self, t, a):#aは入力値

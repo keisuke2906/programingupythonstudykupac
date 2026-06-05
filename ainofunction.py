@@ -15,5 +15,10 @@ def sigmoid(x):
 
 def cross_entropy(x , t):
     import numpy as np
-    y = - np.sum(t * np.log(x + 1e-7)) 
+    y = np.sum(t * np.log(x + 1e-7)) 
+    return y
+
+def nizyou_heikinn(x, t):
+    import numpy as np
+    y = np.sum((x-t)**2/3)
     return y
