@@ -4,7 +4,7 @@ import numpy as np
 from ainofunction import softmax, cross_entropy, sigmoid, nizyou_heikinn
 from ainogradient import koubai, mugen_koubai, koubai_tazigenn
 class omomi_suika:
-    def __init__(self, input_size, hidden_size, output_size, weight_init_std=1):  #これはクラスを指定された時点で発動する　　これらの因数は一度ですべてのデータを読み込ませ計算する
+    def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.5):  #これはクラスを指定された時点で発動する　　これらの因数は一度ですべてのデータを読み込ませ計算する
         #omominoseisei
         self.input_size = input_size
         self.hidden_size = hidden_size
@@ -52,7 +52,7 @@ class omomi_suika:
         self.params['b2'] -= h * grads['b2']
     
 
-unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_init_std = 1)
+unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_init_std = 0.5)
 
 for i in range(200):
     a = np.random.randn(1, unnko.input_size)
