@@ -26,7 +26,7 @@ def koubai_tazigenn(f, x): #多数列の勾配 xは元の入力値ではなく�
         return koubai(f, x)
     else:
         grad = np.zeros_like(x)
-        for i, X in enumerate(x.ndim):#大文字xにその列のｘの値を入れた一列行列にしている。
+        for i, X in enumerate(x):#大文字xにその列のｘの値を入れた一列行列にしている。
             grad[i] = koubai(f, X)
         
         return grad
