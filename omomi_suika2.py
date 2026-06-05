@@ -57,9 +57,8 @@ unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_in
 
 for i in range(10):
     a = np.random.randn(1, unnko.input_size)
-    t = np.random.randn(1, unnko.input_size)
-    unnko.gakusyuu(a, t)
-    print("{i+1}回目の学習完了")
+    unnko.gakusyuu(a, a)
+    print(f"{i+1}回目の学習完了")
 print (unnko.params)
 x = input("suikanoitiha?x")
 y = input("suikanoitiha?y")
