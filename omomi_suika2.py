@@ -54,7 +54,7 @@ class omomi_suika:
 
 unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_init_std = 0.01)
 
-for i in range(1000):
+for i in range(100):
     a = np.random.randn(1, unnko.input_size)
     for k in range(100):
         unnko.gakusyuu(a, a)
