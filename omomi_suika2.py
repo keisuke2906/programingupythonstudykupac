@@ -27,21 +27,14 @@ class omomi_suika:
 
         return y
     
-    def loss(self, w, t, a): #t ha kyousidata
+    def loss(self, t, a): #t ha kyousidata
         y = self.predict(a)           #名前.loss(x, t)で簡単に誤差
 
         return cross_entropy(y, t)
     
-    def accuracy(self , x, t):
-        y = self.predict(x)
-        y = np.argmax(y, axis=1)
-        t = np.argmax(t, axis=1)  #np.argmaxは行列の行方向で一番大きい値のインデックスを配列にして出力する
-        accuracy = np.sum(y == t) / float(x.shape[0]) #float(x.shape[0])はこの時一気に読み込ませたデータの総数である。
     
-        return accuracy
-    
-    def numerical_gradient(self, w, t, a):#aは入力値
-        loss_W = lambda W: self.loss(w, t, a)
+    def numerical_gradient(self, t, a):#aは入力値
+        loss_W = lambda W: self.loss(t, a)
         
         grads = {}
         grads['w1'] = koubai_tazigenn(loss_W, self.params['w1'])
@@ -52,17 +45,13 @@ class omomi_suika:
         return grads
     def gakusyuu(self, a, t):
         h = 0.01
-        grads = self.numerical_gradient(None, t, a)
+        grads = self.numerical_gradient(t, a)
 
         self.params['w1'] -= h * grads['w1']
         self.params['b1'] -= h * grads['b1']
         self.params['w2'] -= h * grads['w2']
         self.params['b2'] -= h * grads['b2']
     
-    def takusann_gakusyuu(self, t):
-        for i in range(100):
-            a = np.random.randn(self.input_size, 1)
-            y = self.gakusyuu(a, t)
 
 unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_init_std = 0.01)
 
