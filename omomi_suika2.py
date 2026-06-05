@@ -14,7 +14,7 @@ class omomi_suika:
                                                          #output_sizeが出力値のデータの大きさ。かけるとｗになる
         self.params['b1'] = np.zeros(hidden_size)
         self.params["w2"] = weight_init_std * np.random.randn(hidden_size, output_size)
-        self.params["b2"] = np.zeros(hidden_size)
+        self.params["b2"] = np.zeros(output_size)
 
     def predict(self, a):
         w1 , w2 = self.params['w1'] , self.params['w2']
