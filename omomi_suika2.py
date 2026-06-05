@@ -61,3 +61,8 @@ for i in range(10):
     unnko.gakusyuu(a, t)
     print(f"{i+1}回目の学習完了")
 print (unnko.params)
+x = input("suikanoitiha?x")
+y = input("suikanoitiha?y")
+z = input("suikanoitiha?z")
+aa = int(x), int(y), int(z)
+print (unnko.loss(aa, aa))
