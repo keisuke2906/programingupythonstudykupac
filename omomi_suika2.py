@@ -10,7 +10,7 @@ class omomi_suika:
         self.hidden_size = hidden_size
         self.output_size = output_size
         self.params = {}
-        self.params['w1'] = weight_init_std *  np.random.randn(input_size, hidden_size)  #input_sizeが入力値のデータの大きさ　
+        self.params['w1'] = weight_init_std * np.random.randn(input_size, hidden_size)  #input_sizeが入力値のデータの大きさ　
                                                          #output_sizeが出力値のデータの大きさ。かけるとｗになる
         self.params['b1'] = np.zeros(hidden_size)
         self.params["w2"] = weight_init_std * np.random.randn(hidden_size, output_size)
@@ -55,7 +55,7 @@ class omomi_suika:
 
 unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_init_std = 0.01)
 
-for i in range(10):
+for i in range(100):
     a = np.random.randn(1, unnko.input_size)
     
     unnko.gakusyuu(a, a)
