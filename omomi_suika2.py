@@ -6,6 +6,9 @@ from ainogradient import koubai, mugen_koubai, koubai_tazigenn
 class omomi_suika:
     def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01):  #これはクラスを指定された時点で発動する　　これらの因数は一度ですべてのデータを読み込ませ計算する
         #omominoseisei
+        self.input_size = input_size
+        self.hidden_size = hidden_size
+        self.output_size = output_size
         self.params = {}
         self.params['w1'] = weight_init_std *  np.random.randn(input_size, hidden_size)  #input_sizeが入力値のデータの大きさ　
                                                          #output_sizeが出力値のデータの大きさ。かけるとｗになる
@@ -14,10 +17,10 @@ class omomi_suika:
         self.params["b2"] = np.zeros(hidden_size)
 
     def predict(self, a):
-        w1 , w2 = self.gakusyuu['w1'] , self.gakusyuu['w2']
-        b1 , b2 = self.gakusyuu["b1"] , self.gakusyuu["b2"]
+        w1 , w2 = self.params['w1'] , self.params['w2']
+        b1 , b2 = self.params["b1"] , self.params["b2"]
 
-        a1 = np.dot(x, w1) + b1
+        a1 = np.dot(a, w1) + b1
         z1 = sigmoid(a1) 
         a2 = np.dot(z1, w2) + b2
         y = softmax(a2)
@@ -41,26 +44,21 @@ class omomi_suika:
         loss_W = lambda W: self.loss(w, t, a)
         
         grads = {}
-        grads['W1'] = koubai_tazigenn(loss_W, self.params['W1'])
+        grads['w1'] = koubai_tazigenn(loss_W, self.params['w1'])
         grads['b1'] = koubai_tazigenn(loss_W, self.params['b1'])
-        grads['W2'] = koubai_tazigenn(loss_W, self.params['W2'])
+        grads['w2'] = koubai_tazigenn(loss_W, self.params['w2'])
         grads['b2'] = koubai_tazigenn(loss_W, self.params['b2'])
         
         return grads
     def gakusyuu(self, a, t):
         h = 0.01
-        w1 , w2 = self.params['w1'] , self.params['w2']
-        b1 , b2 = self.params["b1"] , self.params["b2"]
-        w1 += self.numerical_gradient(w1, t, a)['w1']
-        b1 += self.numerical_gradient(b1, t, a)['b1']
-        w2 += self.numerical_gradient(w2, t, a)['w2']
-        b2 += self.numerical_gradient(b2, t, a)['b2']
-        gakusyuu_zumi = {}
-        gakusyuu_zumi['w1'] = w1
-        gakusyuu_zumi['b1'] = b1
-        gakusyuu_zumi['w2'] = w2
-        gakusyuu_zumi['b2'] = b2
-        return gakusyuu_zumi
+        grads = self.numerical_gradient(None, t, a)
+        
+        # 【修正】勾配（傾き）の方向に、h（学習率）を掛けて「引き算」する（勾配降下法）
+        self.params['w1'] -= h * grads['w1']
+        self.params['b1'] -= h * grads['b1']
+        self.params['w2'] -= h * grads['w2']
+        self.params['b2'] -= h * grads['b2']
     
     def takusann_gakusyuu(self, t):
         for i in range(100):
