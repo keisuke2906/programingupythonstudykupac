@@ -53,8 +53,7 @@ class omomi_suika:
     def gakusyuu(self, a, t):
         h = 0.01
         grads = self.numerical_gradient(None, t, a)
-        
-        # 【修正】勾配（傾き）の方向に、h（学習率）を掛けて「引き算」する（勾配降下法）
+
         self.params['w1'] -= h * grads['w1']
         self.params['b1'] -= h * grads['b1']
         self.params['w2'] -= h * grads['w2']
@@ -67,9 +66,9 @@ class omomi_suika:
 
 unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_init_std = 0.01)
 
-for i in range(100):
-    a = np.random.randn(unnko.input_size, 1)
-    t = np.random.randn(unnko.input_size, 1)
-    unnko.params['w1'],unnko.params['w2'] = unnko.gakusyuu(a, t)['w1'],unnko.gakusyuu(a, t)['w2']
-    unnko.params['b1'],unnko.params['b2'] = unnko.gakusyuu(a, t)['b1'],unnko.gakusyuu(a, t)['b2']
+for i in range(10):
+    a = np.random.randn(1, unnko.input_size)
+    t = np.random.randn(1, unnko.input_size)
+    unnko.gakusyuu(a, t)
+    print(f"{i+1}回目の学習完了")
 print (unnko.params)
