@@ -3,7 +3,7 @@ sys.path.append(os.pardir)
 import numpy as np
 from ainofunction import softmax, cross_entropy, sigmoid
 from ainogradient import koubai, mugen_koubai, koubai_tazigenn
-class omomi_nisou:
+class omomi_suika:
     def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01):  #これはクラスを指定された時点で発動する　　これらの因数は一度ですべてのデータを読み込ませ計算する
         #omominoseisei
         self.params = {}
@@ -13,9 +13,9 @@ class omomi_nisou:
         self.params["w2"] = weight_init_std * np.random.randn(hidden_size, output_size)
         self.params["b2"] = np.zeros(hidden_size)
 
-    def predict(self, x):
-        w1 , w2 = self.params['w1'] , self.params['w2']
-        b1 , b2 = self.params["b1"] , self.params["b2"]
+    def predict(self, a):
+        w1 , w2 = self.gakusyuu['w1'] , self.gakusyuu['w2']
+        b1 , b2 = self.gakusyuu["b1"] , self.gakusyuu["b2"]
 
         a1 = np.dot(x, w1) + b1
         z1 = sigmoid(a1) 
@@ -24,8 +24,8 @@ class omomi_nisou:
 
         return y
     
-    def loss(self, x, t): #t ha kyousidata
-        y = self.predict(x)           #名前.loss(x, t)で簡単に誤差
+    def loss(self, w, t, a): #t ha kyousidata
+        y = self.predict(a)           #名前.loss(x, t)で簡単に誤差
 
         return cross_entropy(y, t)
     
@@ -37,8 +37,8 @@ class omomi_nisou:
     
         return accuracy
     
-    def numerical_gradient(self, x, t):
-        loss_W = lambda W: self.loss(x, t)
+    def numerical_gradient(self, w, t, a):#aは入力値
+        loss_W = lambda W: self.loss(w, t, a)
         
         grads = {}
         grads['W1'] = koubai_tazigenn(loss_W, self.params['W1'])
@@ -47,5 +47,31 @@ class omomi_nisou:
         grads['b2'] = koubai_tazigenn(loss_W, self.params['b2'])
         
         return grads
-    def f(self,):
-        return mugen_koubai(self.loss)
+    def gakusyuu(self, a, t):
+        h = 0.01
+        w1 , w2 = self.params['w1'] , self.params['w2']
+        b1 , b2 = self.params["b1"] , self.params["b2"]
+        w1 += self.numerical_gradient(w1, t, a)['w1']
+        b1 += self.numerical_gradient(b1, t, a)['b1']
+        w2 += self.numerical_gradient(w2, t, a)['w2']
+        b2 += self.numerical_gradient(b2, t, a)['b2']
+        gakusyuu_zumi = {}
+        gakusyuu_zumi['w1'] = w1
+        gakusyuu_zumi['b1'] = b1
+        gakusyuu_zumi['w2'] = w2
+        gakusyuu_zumi['b2'] = b2
+        return gakusyuu_zumi
+    
+    def takusann_gakusyuu(self, t):
+        for i in range(100):
+            a = np.random.randn(self.input_size, 1)
+            y = self.gakusyuu(a, t)
+
+unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_init_std = 0.01)
+
+for i in range(100):
+    a = np.random.randn(unnko.input_size, 1)
+    t = np.random.randn(unnko.input_size, 1)
+    unnko.params['w1'],unnko.params['w2'] = unnko.gakusyuu(a, t)['w1'],unnko.gakusyuu(a, t)['w2']
+    unnko.params['b1'],unnko.params['b2'] = unnko.gakusyuu(a, t)['b1'],unnko.gakusyuu(a, t)['b2']
+print (unnko.params)

@@ -20,12 +20,11 @@ def mugen_koubai (f , x): #勾配の向きに動く
         x = x - dfx * 0.01
     return x
 
-def koubai_tazigenn(f, x): #多数列の勾配
+def koubai_tazigenn(f, x): #多数列の勾配 xは元の入力値ではなく重みやバイアス
     import numpy as np
     if x.ndim == 1: #ｘが一列だった時
         return koubai(f, x)
     else:
-        h = 0.0001
         grad = np.zeros_like(x)
         for i, X in enumerate(x.ndim):#大文字xにその列のｘの値を入れた一列行列にしている。
             grad[i] = koubai(f, X)
