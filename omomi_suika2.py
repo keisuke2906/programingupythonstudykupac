@@ -19,10 +19,9 @@ class omomi_suika:
     def predict(self, a):
         w1 , w2 = self.params['w1'] , self.params['w2']
         b1 , b2 = self.params["b1"] , self.params["b2"]
-
         a1 = np.dot(a, w1) + b1
         z1 = sigmoid(a1) 
-        a2 = np.dot(a1, w2) + b2
+        a2 = np.dot(z1, w2) + b2
         y = abs(softmax(a2))
 
         return a2
@@ -57,8 +56,8 @@ unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_in
 
 for i in range(1000):
     a = np.random.randn(1, unnko.input_size)
-    
-    unnko.gakusyuu(a, a)
+    for k in range(100):
+        unnko.gakusyuu(a, a)
     print(f"{i+1}回目の学習完了")
 print (unnko.params)
 x = input("suikanoitiha?x")
