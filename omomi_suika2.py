@@ -22,7 +22,7 @@ class omomi_suika:
 
         a1 = np.dot(a, w1) + b1
         z1 = sigmoid(a1) 
-        a2 = np.dot(z1, w2) + b2
+        a2 = np.dot(a1, w2) + b2
         y = abs(softmax(a2))
 
         return a2
