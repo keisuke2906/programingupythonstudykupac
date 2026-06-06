@@ -43,7 +43,7 @@ class omomi_suika:
         
         return grads
     def gakusyuu(self, a, t):
-        h = 0.01
+        h = 0.0005
         grads = self.numerical_gradient(t, a)
 
         self.params['w1'] -= h * grads['w1']
@@ -52,17 +52,25 @@ class omomi_suika:
         self.params['b2'] -= h * grads['b2']
     
 
-unnko = omomi_suika(input_size = 3, hidden_size = 3, output_size = 3, weight_init_std = 0.5)
+unnko = omomi_suika(input_size = 2, hidden_size = 3, output_size = 2, weight_init_std = 0.5)
 
 for i in range(2000):
     a = np.random.randn(1, unnko.input_size)
-    for k in range(10):
+    for k in range(100):
         unnko.gakusyuu(a, a)
     print(f"{i+1}回目の学習完了")
 print (unnko.params)
+k = 0
+for i in range(100):
+    a = np.random.randn(1, unnko.input_size)
+    k = k + unnko.loss(a, a)
+    print(f"{i+1}回目の学習完了")
+print("heikinnha")
+print (k / 100)
 x = input("suikanoitiha?x")
 y = input("suikanoitiha?y")
-z = input("suikanoitiha?z")
-aa = np.array([[float(x), float(y), float(z)]])
+#z = input("suikanoitiha?z")
+aa = np.array([[float(x), float(y)]])
 print (unnko.predict(aa))
+
 
