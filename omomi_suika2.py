@@ -52,7 +52,7 @@ class omomi_suika:
         self.params['b2'] -= h * grads['b2']
     
 
-unnko = omomi_suika(input_size = 3, hidden_size = 10, output_size = 3, weight_init_std = 0.5)
+unnko = omomi_suika(input_size = 3, hidden_size = 3, output_size = 3, weight_init_std = 0.5)
 
 for i in range(200):
     a = np.random.randn(1, unnko.input_size)
@@ -65,3 +65,4 @@ y = input("suikanoitiha?y")
 z = input("suikanoitiha?z")
 aa = np.array([[float(x), float(y), float(z)]])
 print (unnko.predict(aa))
+
