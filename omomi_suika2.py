@@ -41,8 +41,7 @@ class omomi_suika:
         grads['b2'] = koubai_tazigenn(loss_W, self.params['b2'])
         
         return grads
-    def gakusyuu(self, a, t):
-        h = 0.0005
+    def gakusyuu(self, a, t, h):#aは入力値
         grads = self.numerical_gradient(t, a)
 
         self.params['w1'] -= h * grads['w1']
@@ -53,10 +52,13 @@ class omomi_suika:
 
 unnko = omomi_suika(input_size = 2, hidden_size = 3, output_size = 2, weight_init_std = 0.5)
 
+h = 0.05
+
 for i in range(200):
     a = np.random.randn(1, unnko.input_size)
     for k in range(50):
-        unnko.gakusyuu(a, a)
+        unnko.gakusyuu(a, a, h)
+        h = h * 3 / 4
     print(f"{i+1}回目の学習完了")
 print (unnko.params)
 k = 0
