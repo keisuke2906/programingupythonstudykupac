@@ -43,7 +43,7 @@ class omomi_suika:
         
         return grads
     def gakusyuu(self, a, t):
-        h = 0.001
+        h = 0.01
         grads = self.numerical_gradient(t, a)
 
         self.params['w1'] -= h * grads['w1']
@@ -54,7 +54,7 @@ class omomi_suika:
 
 unnko = omomi_suika(input_size = 3, hidden_size = 3, output_size = 3, weight_init_std = 0.5)
 
-for i in range(200):
+for i in range(2000):
     a = np.random.randn(1, unnko.input_size)
     for k in range(10):
         unnko.gakusyuu(a, a)
