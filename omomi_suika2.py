@@ -28,7 +28,6 @@ class omomi_suika:
     
     def loss(self, t, a): #t ha kyousidata
         y = self.predict(a)           #名前.loss(x, t)で簡単に誤差
-
         return nizyou_heikinn(y, t)
     
     
@@ -54,9 +53,9 @@ class omomi_suika:
 
 unnko = omomi_suika(input_size = 2, hidden_size = 3, output_size = 2, weight_init_std = 0.5)
 
-for i in range(2000):
+for i in range(200):
     a = np.random.randn(1, unnko.input_size)
-    for k in range(100):
+    for k in range(50):
         unnko.gakusyuu(a, a)
     print(f"{i+1}回目の学習完了")
 print (unnko.params)
