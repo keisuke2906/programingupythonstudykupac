@@ -58,7 +58,7 @@ for i in range(200):
     a = np.random.randn(1, unnko.input_size)
     for k in range(50):
         unnko.gakusyuu(a, a, h)
-        h = h * 3 / 4
+        h = h * 49 / 50
     print(f"{i+1}回目の学習完了")
 print (unnko.params)
 k = 0
